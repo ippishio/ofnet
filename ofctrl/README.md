@@ -71,10 +71,14 @@ func (o *OfApp) MultipartReply(sw *ofctrl.OFSwitch, rep *openflow15.MultipartRep
 }
 
 func (o *OfApp) FlowGraphEnabledOnSwitch() bool {
-    return false
+    return true
 }
 
 func (o *OfApp) TLVMapEnabledOnSwitch() bool {
+    return true
+}
+
+func (o *OfApp) ExperimenterMessageEnabledOnSwitch() bool {
     return false
 }
 

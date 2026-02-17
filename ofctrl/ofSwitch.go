@@ -187,10 +187,12 @@ func (s *OFSwitch) switchConnected() error {
 		log.Errorf("Failed to set switch config: %v", err)
 		return err
 	}
-	// Set controller ID on the Switch.
-	if err := s.Send(openflow15.NewSetControllerID(s.ctrlID)); err != nil {
-		log.Errorf("Failed to set controller ID: %v", err)
-		return err
+	if s.app.ExperimenterMessageEnabledOnSwitch() {
+		// Set controller ID on the Switch.
+		if err := s.Send(openflow15.NewSetControllerID(s.ctrlID)); err != nil {
+			log.Errorf("Failed to set controller ID: %v", err)
+			return err
+		}
 	}
 	s.changeStatus(true)
 	s.app.SwitchConnected(s)

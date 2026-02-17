@@ -101,6 +101,9 @@ type AppInterface interface {
 
 	TLVMapEnabledOnSwitch() bool
 
+	// Send OFPT_EXPERIMENTER Message on Switch connection
+	ExperimenterMessageEnabledOnSwitch() bool
+
 	// PortStatusRcvd notifies AppInterface a new PortStatus message is received.
 	PortStatusRcvd(status *openflow15.PortStatus)
 }
