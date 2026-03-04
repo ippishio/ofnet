@@ -217,6 +217,9 @@ func (s *OFSwitch) receive() {
 		case msg := <-s.stream.Inbound:
 			// New message has been received from message
 			// stream.
+			if !s.app.OFPMessageRcvd(s, msg) {
+				return
+			}
 			s.handleMessages(s.dpid, msg)
 		case err := <-s.stream.Error:
 			log.Warnf("Received ERROR message from switch %v. Err: %v", s.dpid, err)
